@@ -1,8 +1,7 @@
 import React from 'react'
 // ES6 JavaScript
 const person = (props) => {
-    return  <p>I am a {props.name} and I am {props.years} old! 
-            And {Math.floor(Math.random() * 30)}</p>
+    return  <p>I am a {props.name} and I am {props.years} old!</p>
 };
 
 

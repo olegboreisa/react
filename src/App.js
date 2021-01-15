@@ -10,13 +10,24 @@ class App extends Component {
     ]
   }
 
+  
+  switchNameHandler = () => {
+    //console.log('Was clicked!')
+    //  DON'T DO THIS: this.state.person[0].name = 'Olegas';
+    this.setState({person: [
+      { name: 'Olegas', age: 26 },
+      { name: 'Donis', age: 27 }
+    ] 
+  })
+  }
+
   render () {
     return (
       <>
       <div className="App">
           <h1>Hi, I am React App</h1>
           <p>This is actually working!</p>
-          <button>Switch Name</button>
+          <button onClick={this.switchNameHandler}>Switch Name</button>
           <Person name={this.state.person[0].name} years={this.state.person[0].age} />
           <Person name={this.state.person[1].name} years={this.state.person[1].age} />
       </div> 
@@ -41,4 +52,6 @@ export default App;
        * [STATE IS A JAVASCRIPT OBJECT] [IT IS A SPECIAL PROPERTY THAT CAN BE CHANGED]
        * 
        * [THIS REFERS TO A CLASS [ES6]]
+       * 
+       * DO NOT PUT () on the Click Event because it will be executed during runtime not on the exact click!
        */
