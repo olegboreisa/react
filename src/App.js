@@ -1,40 +1,37 @@
-import React, { Component } from 'react'
+import React, { useState } from 'react'
 import './App.css';
 import Person from './Person/Person.js'
 
-class App extends Component {
-  state = {
-    person: [
-      { name: 'Oleg', age: 26 },
-      { name: 'Donatas', age: 27 }
-    ]
-  }
+const App = props => {
+    const [ anyNamePersonState, setPersonState] = useState ({
+      person: [
+        { name: 'Oleg', age: 26 },
+        { name: 'Donatas', age: 27 }
+      ]
+    });
 
-  
-  switchNameHandler = () => {
-    //console.log('Was clicked!')
-    //  DON'T DO THIS: this.state.person[0].name = 'Olegas';
-    this.setState({person: [
-      { name: 'Olegas', age: 26 },
-      { name: 'Donis', age: 27 }
-    ] 
-  })
-  }
+    const switchNameHandler = () => {
+      setPersonState({
+        person: [
+        { name: 'Olegas', age: 26 },
+        { name: 'Donis', age: 27 }
+      ] 
+    });
+  };
+  // [FUNCTIONAL COMPONENT DOES NOT MANUAL MERGE PREVIOUS STATE THAT A NOT CHANGED!]
 
-  render () {
+  // const [otherState, setOtherState] = useState({otherState: 'some other value'}) or ('some other value');
+
     return (
-      <>
       <div className="App">
           <h1>Hi, I am React App</h1>
           <p>This is actually working!</p>
-          <button onClick={this.switchNameHandler}>Switch Name</button>
-          <Person name={this.state.person[0].name} years={this.state.person[0].age} />
-          <Person name={this.state.person[1].name} years={this.state.person[1].age} />
+          <button onClick={switchNameHandler}>Switch Name</button>
+          <Person name={anyNamePersonState.person[0].name} years={anyNamePersonState.person[0].age} />
+          <Person name={anyNamePersonState.person[1].name} years={anyNamePersonState.person[1].age} />
       </div> 
-      </>
     );
   }
-}
 
 export default App;
 
@@ -55,3 +52,28 @@ export default App;
        * 
        * DO NOT PUT () on the Click Event because it will be executed during runtime not on the exact click!
        */
+
+
+       /**
+        *   state = {
+              person: [
+                { name: 'Oleg', age: 26 },
+                { name: 'Donatas', age: 27 }
+              ]
+            }
+            
+            switchNameHandler = () => {
+              //console.log('Was clicked!')
+              //  DON'T DO THIS: this.state.person[0].name = 'Olegas';
+              this.setState({
+                person: [
+                { name: 'Olegas', age: 26 },
+                { name: 'Donis', age: 27 }
+              ] 
+            })
+            }
+        */
+
+        /**
+         * In the functional component we do not need to use render method. We are also using hooks to manage state. [useState]
+         */
